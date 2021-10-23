@@ -1,13 +1,11 @@
 # Surprisal_Analysis
 
-# Todo List
-* Explain that a collaborator was interested to see if this method could be used for his data
-* Reference papers that use this 
-* Explain that a method wasn't coded up in a public library
-* Wrote my own version of the algorithm (2-D) from reading the papers
-* Show some basic results from running on both raman and gene expression data
+Surprisal Analysis has been used for a while in engineering to try to decompose systems that want to be in a state of maximal entropy given constraints. A classic example would be modeling gas inside of a chamber with a piston. The gas naturally wants to be evenly distributed accross all the volume. If the piston (ie. constraint) moves and reduces or increases the volume in the chamber the gas naturally wants to fill it up. Thus it is always in a state of maximal entropy.
 
+One of the first methods to apply this to biological data was (Remacle et al., [2010](https://www.pnas.org/content/pnas/107/22/10324.full.pdf)). They argue that molecules within a cell often behave similarly to the gas example. A little bit after this paper other scientists began using this method on gene expression data sets. A good recent example of a paper published doing this is (Su et al., [2020](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7214418/)). However, it wasn't until about 2020 that this method was applied to raman spectrometry data (Du et al., [2020](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7518429/)). 
 
-(Germond et al., [2018](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6123714/))
+A collaborator that I have been working with, Dr. Zhou at USU, was interested if this method could be used to discriminate cells that had been subjected to different treatments as well as give inference into the nature of the treatment. After reading through the previous literature as well a very helpful review article (Remacle et al., [2016](https://www.mdpi.com/1099-4300/18/12/445/htm)), I determined that this method could be a beneficial one for him. 
 
-Filler text here
+Surprisal Analysis is actually a very simple method. They transform their data by taking the natural log of each element in a dataset and essentially apply SVD. There are a lot of reasons that explain why this works well and (Remacle et al., [2010](https://www.pnas.org/content/pnas/107/22/10324.full.pdf)) does a good job of explaining them if you're interested in more details. The gist of it is that thermodynamic entropy does a better job of estimating the baseline entropy of your system when there are no constraints applied to it. To limit your entropy distribution to this one the natural log transformation is applied.
+
+I was surprised after reading all of these papers that I could not find a working version of surprisal analysis in python or r. So I implemented one myself. It could definitely be improved, but I feel that what I have is sufficient for my needs for the time being.
